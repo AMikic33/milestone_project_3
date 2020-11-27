@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" 
         integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css">
@@ -15,29 +16,29 @@
 
     <header>
         <!-- main navbar -->
-        <nav class="nav-extended text-shadow deep-orange">
+        <nav class="nav-extended text-shadow deep-orange lighten-4">
             <div class="nav-wrapper">
-            <a href="#!" class="brand-logo">Recipes</a>
+            <a href="{{ url_for('get_recipes') }}" class="brand-logo">Recipes</a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="#">Home</a></li>
+                <li><a href="{{ url_for('get_recipes') }}">Home</a></li>
                 <li><a href="#">New Recipe</a></li>
                 <li><a href="#">Manage Categories</a></li>
                 <li><a href="#">Log Out</a></li>
                 <li><a href="#">Log In</a></li>
-                <li><a href="#">Register</a></li>
+                <li><a href="{{ url_for('register') }}">Register</a></li>
             </ul>
             </div>
         </nav>
 
         <!-- mobile navbar -->
         <ul class="sidenav" id="mobile-demo">
-            <li><a href="#">Home</a></li>
+            <li><a href="{{ url_for('get_recipes') }}">Home</a></li>
             <li><a href="#">New Recipe</a></li>
             <li><a href="#">Manage Categories</a></li>
             <li><a href="#">Log Out</a></li>
             <li><a href="#">Log In</a></li>
-            <li><a href="#">Register</a></li>
+            <li><a href="{{ url_for('register') }}">Register</a></li>
         </ul>
     </header>
 
