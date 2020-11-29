@@ -6,7 +6,7 @@
     <div class="row">
         <form class="col s12 m6 offset-m3" method="POST" action="{{ url_for('login') }}">
             <div class="card-panel grey lighten-1">
-                <!-- login name -->
+                <!-- sign in name -->
                 <div class="row">
                     <div class="input-field col s12">
                         <input id="username" name="username" type="text" minlength="3" 
@@ -22,7 +22,7 @@
                         <label for="password">Password</label>
                     </div>
                 </div>
-                <!-- login -->
+                <!-- sign in -->
                 <div class="row">
                     <button class="btn waves-effect waves-light deep-orange lighten-4" type="submit" name="action">Log In
                         <i class="material-icons right"></i>
@@ -35,8 +35,8 @@
     <div class="row">
         <div class="col12">
             <p class="center-align">
-                <small>Don't have an account yet? <a href="{{ url_for('register') }}" class="grey-text">Register</a>
-            </small></p>
+                Don't have an account yet? <a href="{{ url_for('registration') }}" class="deep-orange-text text-lighten-4">Register here</a>
+            </p>
         </div>
     </div>
 
