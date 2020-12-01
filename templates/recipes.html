@@ -1,12 +1,32 @@
 {% extends "base.html" %}
 {% block content %}
 
-    {% for recipe in recipes %}
-        {{ recipe.recipe_name }}<br>
-        {{ recipe.category_name }}<br>
-        {{ recipe.favourite }}<br>
-    {% endfor %}
+    <div id="recipes">
+        <div class="row recipes-overview">
+            {% for recipe in recipes %}
+                <div class="col s12 m6 l3">
+                    <div class="card">
+                        <div class="card-image">
+                            {% if recipes.recipe_img == error %}
+                                <img class="recipe_img" src="{{ url_for('static', filename='img/auto_img.jpg')}}" alt="recipe photo">
+                            {% else %}
+                                <img class="recipe_img" src="{{url_for('static', filename='uploaded_img/'+recipes.recipe_img)}}" alt="recipe photo">
+                            {% endif %}
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title center-align">{{ recipe.recipe_name }}</h3>
+                            <p class="center-align category"><strong>Category:</strong> {{ recipe.category_name }}</p>
+                            <p class="center-align category"><strong>Cuisine:</strong> {{ recipe.recipe_cuisine }}</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#">Go to recipe</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
 
-    
+        </div>
+    </div>
 
 {% endblock %}
+
