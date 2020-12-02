@@ -16,7 +16,7 @@
                             <p class="center-align category"><strong>Author:</strong> {{ recipe.author }}</p>
                         </div>
                         <div class="card-action">
-                            <a href="{{ url_for('single_recipe') }}"> Go to recipe</a>
+                            <a href="{{ url_for('single_recipe', recipe_id=recipe._id) }}"> Go to recipe</a>
                         </div>
                     </div>
                 </div>

@@ -1,19 +1,23 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <div class="recipe-container">
+    <div class="row recipe-header center-align col s12">
         <h2 class="center-align">{{ recipe.recipe_name }}</h2>
-        <h5 class="sub-title">Author: {{ recipe.author }}</h5>
-        <div class="recipe_img"
-             style="background-img: {{ recipe.recipe_img }}">
-        </div>
-        <div class="recipe-info">
-            <p><strong>Cuisine:</strong> {{ recipe.recipe_cuisine }}</p>
-            <p><strong>Category:</strong> {{ recipe.category_name }}</p>
-            <p><strong>Cooking time:</strong> {{ recipe.cooking_time }}</p>
-            <p><strong>Servings:</strong> {{ recipe.serving_nr }}</p>
-        </div>
+        <h5 class="sub-title center-align">Created by: {{ recipe.author }}</h5>
+    </div>
 
+    <div class="row recipe-info center-align col s12">
+        <p><strong>Cuisine:</strong> {{ recipe.recipe_cuisine }}</p>
+        <p><strong>Category:</strong> {{ recipe.category_name }}</p>
+        <p><strong>Cooking time:</strong> {{ recipe.cooking_time }}</p>
+        <p><strong>Servings:</strong> {{ recipe.serving_nr }}</p>
+    </div>
+
+    <div class="row recipe-img center-align col s12">
+        <img src="{{ recipe.recipe_img }}">
+    </div>
+
+    <div class="row">
         <div class="ingredients">
         <h4>Ingredients</h4>
             <table>
@@ -34,13 +38,15 @@
                 </tbody>
             </table>
         </div>
-        <div class="container">
-            <h4>Preparation</h4>
-            <ol>
-                <li>{{ recipe.directions }}</li>
-            <ol>
-        </div>
     </div>
+
+    <div class="container">
+        <h4>Preparation</h4>
+        <ol>
+            <li>{{ recipe.directions }}</li>
+        <ol>
+    </div>
+    
 
 
 {% endblock %}

@@ -160,9 +160,9 @@ def add_recipe():
             "category_name": request.form.get("category_name"),
             "recipe_img": recipe_img,
             "recipe_cuisine": request.form.get("recipe_cuisine"),
-            "cooking_time": request.form.getlist("cooking_time"),
-            "serving_nr": request.form.getlist("serving_nr"),
-            "measure": request.form.getlist("measure"),
+            "cooking_time": request.form.get("cooking_time"),
+            "serving_nr": request.form.get("serving_nr"),
+            "measure": request.form.get("measure"),
             "ing_amount": request.form.get("ing_amount"),
             "recipe_ing": request.form.get("recipe_ing"),
             "recipe_description": request.form.get("recipe_description"),
@@ -173,15 +173,16 @@ def add_recipe():
         return redirect(url_for("get_recipes"))
     categories = mongo.db.categories.find().sort("category_number", 1)
     time = mongo.db.time.find().sort("cooking_number", 1)
-    servings = list(mongo.db.servings.find().sort("serving_nr", 1))
-    measures = list(mongo.db.measures.find().sort("measure_number", 1))
+    servings = mongo.db.servings.find().sort("serving_nr", 1)
+    measures = mongo.db.measures.find().sort("measure_number", 1)
     print(len(measures))
     return render_template("add_recipe.html", categories=categories, time=time, servings=servings, measures=measures)
 
 
-@app.route("/single_recipe")
-def single_recipe():
-    return render_template("single_recipe.html")
+@app.route("/single_recipe/<recipe_id>")
+def single_recipe(recipe_id):
+    recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
+    return render_template("single_recipe.html", recipe=recipe)
 
 
 if __name__ == "__main__":
