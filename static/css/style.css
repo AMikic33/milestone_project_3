@@ -36,4 +36,14 @@ h3 {
     font-size: 2rem;
 }
 
+.ingredients {
+    padding: 2rem;
+}
 
+.preparation {
+    padding: 2rem;
+}
+
+.btn-small {
+    margin: 1rem;
+}

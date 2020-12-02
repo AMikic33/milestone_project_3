@@ -150,7 +150,7 @@ def logout():
     session.pop("user")
     return redirect(url_for("login"))
 
-
+# adding a new recipe
 @app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
     if request.method == "POST":
@@ -178,11 +178,18 @@ def add_recipe():
     print(len(measures))
     return render_template("add_recipe.html", categories=categories, time=time, servings=servings, measures=measures)
 
-
+# see a single recipe function 
 @app.route("/single_recipe/<recipe_id>")
 def single_recipe(recipe_id):
     recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
     return render_template("single_recipe.html", recipe=recipe)
+
+
+# edit recipe function
+@app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
+def edit_recipe(recipe_id):
+    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    return render_template("edit_recipe.html", recipe=recipe)
 
 
 if __name__ == "__main__":
