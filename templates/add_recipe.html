@@ -5,92 +5,89 @@
 
     <div class="row">
         <form class="col s12" method="POST" action="">
+        
             <div class="row">
-                <div class="input-field col s12">
+            <!-- recipe name-->
+                <div class="input-field col s12 m8">
                     <input id="recipe_name" name="recipe_name" type="text" class="validate" required>
                     <label for="recipe_name">Recipe Name</label>
                 </div>
+                <!-- recipe cuisine-->
+                <div class="input-field col s12 m4">
+                    <input id="recipe_cuisine" name="recipe_cuisine" type="text" class="validate" required>
+                    <label for="recipe_cuisine">Cuisine</label>
+                </div>
             </div>
 
             <div class="row">
+            <!-- recipe category -->
                 <div class="input-field col s12 m4">
-                    <select class="browser-default">
-                        <option value="" disabled selected>Category</option>
-                        <option value="1">Appetizer</option>
-                        <option value="2">Main course</option>
-                        <option value="3">Dessert</option>
+                    <select id="category_name" name="category_name" class="browser-default" required>
+                        <option value="" disabled selected>Select Category</option>
+                        {% for category in categories %}
+                            <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="category_name"></label>
+                </div>
+                <!-- cooking time-->
+                <div class="input-field col s12 m4">
+                    <select id="cooking_time" name="cooking_time" class="browser-default" required>
+                        <option value="" disabled selected>Cooking Time</option>
+                        {% for time in time %}
+                            <option value="{{ time.cooking_time }}">{{ time.cooking_time }}</option>
+                        {% endfor %}
+                        <label for="cooking_time"></label>
                     </select>
                 </div>
+                <!-- number of servings -->
                 <div class="input-field col s12 m4">
-                    <select class="browser-default">
-                        <option value="" disabled selected>Cooking time</option>
-                        <option value="1">0-30 min</option>
-                        <option value="2">30-60 min</option>
-                        <option value="3">1-2 hours</option>
-                        <option value="4">2+ hours</option>
-                    </select>
-                </div>
-                <div class="input-field col s12 m4">
-                    <select class="browser-default">
+                    <select id="serving_nr" name="serving_nr" class="browser-default" required>
                         <option value="" disabled selected>Servings</option>
-                        <option value="1">2 servings</option>
-                        <option value="2">4 servings</option>
-                        <option value="3">6 servings</option>
-                        <option value="4">8 servings</option>
+                        {% for serving in servings %}
+                            <option value="{{ servings.serving_nr }}">{{ servings.serving_nr }}</option>
+                        {% endfor %}
+                        <label for="serving_nr"></label>
                     </select>
                 </div>
             </div>
-
+            <!-- recipe description -->
             <div class="row">
                 <div class="input-field col s12">
                     <textarea id="recipe_description" name="recipe_description" 
                     class="materialize-textarea validate"></textarea>
-                    <label for="recipe_description">Recipe description</label>
+                    <label for="recipe_description">Recipe Description</label>
                 </div>
             </div>
-            
+            <!-- list of ingrediants -->
             <div class="row ing_list">
                 <div class="input-field form-group col s12 m7">
                     <input id="recipe_ing" name="recipe_ing" type="text" class="validate" required>
                     <label for="recipe_ing">Ingrediant</label>            
                 </div>
+                <!-- ingrediants amount -->
                 <div class="input-field form-group col s6 m2">
                     <input id="ing_amount" name="ing_amount" type="text" class="validate" required>
                     <label for="ing_amount">Amount</label>            
                 </div>
+                <!-- measure for the ingrediant amount -->
                 <div class="input-field form-group col s6 m3">
-                    <select class="browser-default">
+                    <select id="measure" name="measure" class="browser-default" required>
                         <option value="" disabled selected>Measure</option>
-                        <option value="1">g</option>
-                        <option value="2">dg</option>
-                        <option value="3">kg</option>
-                        <option value="4">ml</option>
-                        <option value="5">dl</option>
-                        <option value="6">l</option>
-                        <option value="7">1/4 cup</option>
-                        <option value="8">1/3 cup</option>
-                        <option value="9">1/2 cup</option>
-                        <option value="11">1 cup</option>
-                        <option value="12">tbs</option>
-                        <option value="13">ts</option>
+                        {% for measure in measures %}
+                            <option value="{{ measures.measure }}">{{ measures.measure }}</option>
+                        {% endfor %}
+                        <label for="measure">Amount</label>
                     </select>
                 </div>
             </div>
-            <div class="row">
-                <button class="btn waves-effect waves-light deep-orange lighten-4" type="button" onclick="ing_list();">
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add another ingrediant
-                </button>
-            </div>
-
+            
             <div class="row">
                 <div class="input-field col s12">
                     <textarea id="directions" name="directions" 
                     class="materialize-textarea validate"></textarea>
                     <label for="directions">Directions</label>
                 </div>
-                <button class="btn waves-effect waves-light deep-orange lighten-4" type="button" onclick="ing_list();">
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add another step
-                </button>
             </div>
         </form>
     </div>
