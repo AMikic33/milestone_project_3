@@ -1,11 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
 
+    <div class="row main-intro center-align cols12">
+        <h2 class="main-title brown-text text-lighten-1 col s12">
+            Whole Food Plant Based Recipes
+        </h2>
+        <p class="brown-text text-lighten-1">
+            The idea behind the whole-food, plant-based diet (WFPB for short) is surprisingly simple: Eat whole, unrefined, plant-based foods. 
+            The goal is to eat a large variety of minimally processed foods. And the best part? There aren’t a bunch of rules or restrictions. 
+            There’s no calorie counting, you don’t have to worry about eating raw versus cooked and the list of things you can enjoy is robust.
+        </p>
+    </div>
     <div id="recipes">
         <div class="row recipes-overview">
             {% for recipe in recipes %}
                 <div class="col s12 m4">
-                    <div class="card">
+                    <div class="card brown-text text-lighten-1">
                         <div class="card-image">
                             <img class="recipe_img" src="{{ recipe.recipe_img }}" alt="recipe photo">
                         </div>
@@ -15,8 +25,8 @@
                             <p class="center-align category"><strong>Cuisine:</strong> {{ recipe.recipe_cuisine }}</p>
                             <p class="center-align category"><strong>Author:</strong> {{ recipe.author }}</p>
                         </div>
-                        <div class="card-action">
-                            <a href="{{ url_for('single_recipe', recipe_id=recipe._id) }}"> Go to recipe</a>
+                        <div class="card-action center-align deep-orange lighten-4">
+                            <a href="{{ url_for('single_recipe', recipe_id=recipe._id) }}" class="white-text"> Go to recipe</a>
                         </div>
                     </div>
                 </div>

@@ -8,20 +8,34 @@ body {
 
 nav .brand-logo {
     padding-left: 0.5rem;
+    font-family: 'Sansita Swashed', cursive;
+}
+
+.main-title {
+    font-family: 'Sansita Swashed', cursive;
+    margin: 2rem;
 }
 
 p {
     font-size: small;
 }
 
-.material-icons {
-    padding-left: 0.5rem;
-}
 
 h3 {
     margin-top: 0.2rem;
 }
 
+.card {
+    margin: 2rem;
+}
+
+.card-title {
+    font-family: 'Sansita Swashed', cursive;
+}
+
+.card-action {
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.7);
+}
 .card .card-content {
     padding: 0.6rem;
 }
