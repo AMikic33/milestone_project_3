@@ -26,6 +26,12 @@ h3 {
     padding: 0.6rem;
 }
 
+.card .card-image img {
+    height: 260px;
+    background-size: cover;
+    background-position: center center;
+}
+
 .center-align .category {
     font-size: 2rem;
 }

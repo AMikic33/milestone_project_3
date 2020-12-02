@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <div class="recipe-container">
+        <h2 class="center-align">{{ recipe.recipe_name }}</h2>
+        <h5 class="sub-title">Author: {{ recipe.author }}</h5>
+        <div class="recipe_img"
+             style="background-img: {{ recipe.recipe_img }}">
+        </div>
+    </div>
+
+
+{% endblock %}

@@ -151,12 +151,30 @@ def logout():
     return redirect(url_for("login"))
 
 
-@app.route("/add_recipe")
+@app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
-    categories = mongo.db.categories.find().sort("category_name", 1)
+    if request.method == "POST":
+        recipe_img = request.form.get("recipe_img") or url_for('static', filename='img/auto_img.jpg')
+        recipe = {
+            "recipe_name": request.form.get("recipe_name"),
+            "category_name": request.form.get("category_name"),
+            "recipe_img": recipe_img,
+            "recipe_cuisine": request.form.get("recipe_cuisine"),
+            "cooking_time": request.form.getlist("cooking_time"),
+            "serving_nr": request.form.getlist("serving_nr"),
+            "measure": request.form.getlist("measure"),
+            "recipe_ing": request.form.get("recipe_ing"),
+            "recipe_description": request.form.get("recipe_description"),
+            "author": session["user"]
+        }
+        mongo.db.recipes.insert_one(recipe)
+        flash("Recipe created")
+        return redirect(url_for("get_recipes"))
+    categories = mongo.db.categories.find().sort("category_name")
     time = mongo.db.time.find().sort("cooking_time", 1)
-    servings = mongo.db.servings.find().sort("serving_nr", 1)
-    measures = mongo.db.servings.find().sort("measure", 1)
+    servings = list(mongo.db.servings.find().sort("serving_nr", 1))
+    measures = list(mongo.db.Measures.find().sort("measure", 1))
+    print(len(measures))
     return render_template("add_recipe.html", categories=categories, time=time, servings=servings, measures=measures)
 
 
