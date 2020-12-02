@@ -163,6 +163,7 @@ def add_recipe():
             "cooking_time": request.form.getlist("cooking_time"),
             "serving_nr": request.form.getlist("serving_nr"),
             "measure": request.form.getlist("measure"),
+            "ing_amount": request.form.get("ing_amount"),
             "recipe_ing": request.form.get("recipe_ing"),
             "recipe_description": request.form.get("recipe_description"),
             "author": session["user"]
@@ -170,12 +171,17 @@ def add_recipe():
         mongo.db.recipes.insert_one(recipe)
         flash("Recipe created")
         return redirect(url_for("get_recipes"))
-    categories = mongo.db.categories.find().sort("category_name")
-    time = mongo.db.time.find().sort("cooking_time", 1)
+    categories = mongo.db.categories.find().sort("category_number", 1)
+    time = mongo.db.time.find().sort("cooking_number", 1)
     servings = list(mongo.db.servings.find().sort("serving_nr", 1))
-    measures = list(mongo.db.Measures.find().sort("measure", 1))
+    measures = list(mongo.db.measures.find().sort("measure_number", 1))
     print(len(measures))
     return render_template("add_recipe.html", categories=categories, time=time, servings=servings, measures=measures)
+
+
+@app.route("/single_recipe")
+def single_recipe():
+    return render_template("single_recipe.html")
 
 
 if __name__ == "__main__":

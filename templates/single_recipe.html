@@ -7,6 +7,39 @@
         <div class="recipe_img"
              style="background-img: {{ recipe.recipe_img }}">
         </div>
+        <div class="recipe-info">
+            <p><strong>Cuisine:</strong> {{ recipe.recipe_cuisine }}</p>
+            <p><strong>Category:</strong> {{ recipe.category_name }}</p>
+            <p><strong>Cooking time:</strong> {{ recipe.cooking_time }}</p>
+            <p><strong>Servings:</strong> {{ recipe.serving_nr }}</p>
+        </div>
+
+        <div class="ingredients">
+        <h4>Ingredients</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Amount</th>
+                        <th>Measure</th>
+                        <th>Ingrediant</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>{{ recipe.ing_amount }}</td>
+                        <td>{{ recipe.measure }}</td>
+                        <td>{{ recipe.recipe_ing }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="container">
+            <h4>Preparation</h4>
+            <ol>
+                <li>{{ recipe.directions }}</li>
+            <ol>
+        </div>
     </div>
 
 
