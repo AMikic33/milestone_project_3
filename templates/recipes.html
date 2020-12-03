@@ -11,29 +11,53 @@
             There’s no calorie counting, you don’t have to worry about eating raw versus cooked and the list of things you can enjoy is robust.
         </p>
     </div>
-    <div id="recipes">
-        <div class="row recipes-overview">
-            {% for recipe in recipes %}
+
+    <!-- search field -->
+    <div class="row card-panel">
+        <form action="{{ url_for('search') }}" method="post" class="col s12">
+            <div class="row valign-wrapper center-align">
+                <div class="input-field ol s12">
+                    <i class="material-icons search"></i>
+                    <input type="text" name="query" id="query" class="validate">
+                    <label for="query">Search</label>
+                </div>
                 <div class="col s12 m4">
-                    <div class="card grey-text text-darken-2">
-                        <div class="card-image">
-                            <img class="recipe_img" src="{{ recipe.recipe_img }}" alt="recipe photo">
-                        </div>
-                        <div class="card-content">
-                            <h3 class="card-title center-align">{{ recipe.recipe_name }}</h3>
-                            <p class="center-align category"><strong>Category:</strong> {{ recipe.category_name }}</p>
-                            <p class="center-align category"><strong>Cuisine:</strong> {{ recipe.recipe_cuisine }}</p>
-                            <p class="center-align category"><strong>Author:</strong> {{ recipe.author }}</p>
-                        </div>
-                        <div class="card-action center-align deep-orange lighten-4">
-                            <a href="{{ url_for('single_recipe', recipe_id=recipe._id) }}" class="white-text"> Go to recipe</a>
+                    <a href="{{ url_for('get_recipes') }}" class="btn">Reset</a>
+                    <button type="submit" class="btn">Search
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    {% if recipes|length > 0 %}
+        <div id="recipes">
+            <div class="row recipes-overview">
+                {% for recipe in recipes %}
+                    <div class="col s12 m4">
+                        <div class="card grey-text text-darken-2">
+                            <div class="card-image">
+                                <img class="recipe_img" src="{{ recipe.recipe_img }}" alt="recipe photo">
+                            </div>
+                            <div class="card-content">
+                                <h3 class="card-title center-align">{{ recipe.recipe_name }}</h3>
+                                <p class="center-align category"><strong>Category:</strong> {{ recipe.category_name }}</p>
+                                <p class="center-align category"><strong>Cuisine:</strong> {{ recipe.recipe_cuisine }}</p>
+                                <p class="center-align category"><strong>Author:</strong> {{ recipe.author }}</p>
+                            </div>
+                            <div class="card-action center-align deep-orange lighten-4">
+                                <a href="{{ url_for('single_recipe', recipe_id=recipe._id) }}" class="white-text"> Go to recipe</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
 
+            </div>
         </div>
-    </div>
+    
+    {% else %}
+        <h3 class="deep-orange-text text-darken-4 center-align"> No results for this search</h3>
+    {% endif %}
 
 {% endblock %}
 
