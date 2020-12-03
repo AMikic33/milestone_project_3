@@ -108,12 +108,13 @@ def add_recipe():
             "ing_amount": request.form.get("ing_amount"),
             "recipe_ing": request.form.get("recipe_ing"),
             "recipe_description": request.form.get("recipe_description"),
-            "recipe_directions": request.form.get("directions"),
+            "recipe_directions": request.form.get("recipe_directions"),
             "author": session["user"]
         }
         mongo.db.recipes.insert_one(recipe)
         flash("Recipe created")
         return redirect(url_for("get_recipes"))
+
     categories = mongo.db.categories.find().sort("category_number", 1)
     time = mongo.db.time.find().sort("cooking_number", 1)
     servings = mongo.db.servings.find().sort("serving_nr", 1)
@@ -130,6 +131,25 @@ def single_recipe(recipe_id):
 # edit recipe function
 @app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
 def edit_recipe(recipe_id):
+    if request.method == "POST":
+        recipe_img = request.form.get("recipe_img") or url_for('static', filename='img/auto_img.jpg')
+        submit = {
+            "recipe_name": request.form.get("recipe_name"),
+            "category_name": request.form.get("category_name"),
+            "recipe_img": recipe_img,
+            "recipe_cuisine": request.form.get("recipe_cuisine"),
+            "cooking_time": request.form.get("cooking_time"),
+            "serving_nr": request.form.get("serving_nr"),
+            "measure": request.form.get("measure"),
+            "ing_amount": request.form.get("ing_amount"),
+            "recipe_ing": request.form.get("recipe_ing"),
+            "recipe_description": request.form.get("recipe_description"),
+            "recipe_directions": request.form.get("recipe_directions"),
+            "author": session["user"]
+        }
+        mongo.db.recipes.update({"_id": ObjectId(recipe_id)}, submit)
+        flash("Recipe successfully updated")
+
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     categories = mongo.db.categories.find().sort("category_number", 1)
     time = mongo.db.time.find().sort("cooking_number", 1)

@@ -13,7 +13,7 @@
 
     <div id="recipes">
         <div class="row recipes-overview">
-        {% if user.username == recipe.author %}
+        {% if session.user|lower == recipe.author|lower %}
             {% for recipe in recipes %}
                 <div class="col s12 m4">
                     <div class="card grey-text text-darken-2">

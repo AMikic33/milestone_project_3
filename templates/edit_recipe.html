@@ -96,7 +96,7 @@
                                     <option value="{{ measure.measure }}">{{ measure.measure }}</option>
                                 {% endif %}
                             {% endfor %}
-                            <label for="measure">Amount</label>
+                            <label for="measure">Measure</label>
                         </select>
 				</div>
 			</div>
@@ -107,11 +107,11 @@
 		<!-- recipe directions -->
 		<div class="row">
 			<div class="input-field col s12 grey-text text-darken-2">
-				<textarea id="directions" name="directions"
+				<textarea id="recipe_directions" name="recipe_directions"
                     class="materialize-textarea validate">
-                    {{- recipe.directions -}}    
+                    {{- recipe.recipe_directions -}}    
                 </textarea>
-				<label for="directions">Preparation</label>
+				<label for="recipe_directions">Preparation</label>
 			</div>
             <button class="btn waves-effect waves-light deep-orange lighten-4" type="button" id="add-preparation-btn">Add Preparation Step
                 <i class="material-icons right"></i>
