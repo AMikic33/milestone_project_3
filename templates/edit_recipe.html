@@ -73,36 +73,15 @@
 				<label for="recipe_description">Recipe Description</label>
 			</div>
 		</div>
-		<!-- list of ingrediants -->
-		<div id="ingredients_div">
-			<div class="row ing_list grey-text text-darken-2">
-				<div class="input-field form-group col s12 m7">
-					<input id="recipe_ing" name="recipe_ing" type="text" class="validate" value="{{ recipe.recipe_ing }}" required>
-					<label for="recipe_ing">Ingrediant</label>
-				</div>
-				<!-- ingrediants amount -->
-				<div class="input-field form-group col s6 m2">
-					<input id="ing_amount" name="ing_amount" type="text" class="validate" value="{{ recipe.ing_amount }}" required>
-					<label for="ing_amount">Amount</label>
-				</div>
-				<!-- measure for the ingrediant amount -->
-				<div class="input-field form-group col s6 m3">
-					<select id="measure" name="measure" class="browser-default" required>
-                            <option value="" disabled selected>Measure</option>
-                            {% for measure in measures %}
-                                {% if measure.measure == recipe.measure %}
-                                    <option value="{{ measure.measure }}" selected>{{ measure.measure }}</option>
-                                {% else %}
-                                    <option value="{{ measure.measure }}">{{ measure.measure }}</option>
-                                {% endif %}
-                            {% endfor %}
-                            <label for="measure">Measure</label>
-                        </select>
-				</div>
+		<!-- list of ingredients -->
+		<div class="row">
+			<div class="input-field col s12 grey-text text-darken-2">
+				<textarea id="recipe_ing" name="recipe_ing"
+                    class="materialize-textarea validate">
+                    {{- recipe.recipe_ing -}}    
+                </textarea>
+				<label for="recipe_ing">Ingredients</label>
 			</div>
-            <button class="btn waves-effect waves-light deep-orange lighten-4" type="button" id="add-ingredient-btn">Add Ingredient
-                <i class="material-icons right"></i>
-            </button>
 		</div>
 		<!-- recipe directions -->
 		<div class="row">
@@ -113,9 +92,6 @@
                 </textarea>
 				<label for="recipe_directions">Preparation</label>
 			</div>
-            <button class="btn waves-effect waves-light deep-orange lighten-4" type="button" id="add-preparation-btn">Add Preparation Step
-                <i class="material-icons right"></i>
-            </button>
 		</div>
 		<!-- upload image -->
 		<div class="row">
@@ -133,10 +109,10 @@
 			<div class="cols12 center-align">
 
             <!-- cancel editing -->
-                <a href="{{ url_for('get_recipes') }}" class="waves-effect waves-light deep-orange darken-3 btn">Cancel</a>
+                <a href="{{ url_for('get_recipes') }}" class="waves-effect waves-light grey darken-2 btn">Cancel</a>
 
                 <!-- edit recipe button-->
-				<button class="btn waves-effect waves-light blue-grey" type="submit" name="action">Edit Recipe
+				<button class="btn waves-effect waves-light grey darken-2" type="submit" name="action">Edit Recipe
                         <i class="material-icons right"></i>
                     </button>
 			</div>

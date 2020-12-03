@@ -29,8 +29,8 @@
                     <label for="query">Search</label>
                 </div>
                 <div class="col s12 m4">
-                    <a href="{{ url_for('get_recipes') }}" class="btn waves-effect waves-light deep-orange darken-3">Reset</a>
-                    <button type="submit" class="btn waves-effect waves-light blue-grey">Search
+                    <a href="{{ url_for('get_recipes') }}" class="btn grey darken-2 waves-effect waves-light">Reset</a>
+                    <button type="submit" class="btn grey darken-2 waves-effect waves-light">Search
                     </button>
                 </div>
             </div>
@@ -41,7 +41,7 @@
         <div id="recipes">
             <div class="row recipes-overview">
                 {% for recipe in recipes %}
-                    <div class="col s12 m4">
+                    <div class="col s12 m6 l6 xl4">
                         <div class="card grey-text text-darken-2">
                             <div class="card-image">
                                 <img class="recipe_img" src="{{ recipe.recipe_img }}" alt="recipe photo">

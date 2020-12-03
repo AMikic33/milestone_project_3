@@ -17,39 +17,25 @@
         <img src="{{ recipe.recipe_img }}" style="max-height: 45vh">
     </div>
 
-    <div class="row">
-        <div class="ingredients grey-text text-darken-2">
-        <h4 class="ingredients center-align">Ingredients</h4>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Amount</th>
-                        <th>Measure</th>
-                        <th>Ingrediant</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr>
-                        <td>{{ recipe.ing_amount }}</td>
-                        <td>{{ recipe.measure }}</td>
-                        <td>{{ recipe.recipe_ing }}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+    <div class="container description grey-text text-darken-2 col s12">
+        <h5 class="center-align">Recipe Description</h5>
+        <p class="center-align ">{{ recipe.recipe_description }}</p>
     </div>
 
-    <div class="container grey-text text-darken-2">
-        <h4 class="preparation center-align">Preparation</h4>
-        <ol>
-            <li>{{ recipe.recipe_directions }}</li>
-        <ol>
+    <div class="container ingredients grey-text text-darken-2 col s12">
+        <h5 class="center-align">Ingredients</h5>
+        <p class="center-align ">{{ recipe.recipe_ing }}</p>
     </div>
+
+    <div class="container preparation grey-text text-darken-2 col s12">
+        <h5 class="center-align">Preparation</h5>
+        <p class="center-align ">{{ recipe.recipe_directions }}</p>
+    </div>
+
     <div class="row center-align">
         {% if session.user|lower == recipe.author|lower %}
-            <a href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}" class="waves-effect waves-light blue-grey btn-small">Edit Recipe</a>
-            <a href="{{ url_for('delete_recipe', recipe_id=recipe._id) }}" class="waves-effect waves-light deep-orange darken-3 btn-small">Delete Recipe</a>
+            <a href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}" class="waves-effect waves-light grey darken-2 btn-small">Edit Recipe</a>
+            <a href="{{ url_for('delete_recipe', recipe_id=recipe._id) }}" class="waves-effect waves-light grey darken-2 btn-small">Delete Recipe</a>
         {% endif %}
     </div>
     

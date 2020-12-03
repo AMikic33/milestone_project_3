@@ -17,7 +17,7 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
-
+# route to homepage
 @app.route("/")
 @app.route("/get_recipes")
 def get_recipes():
@@ -25,6 +25,7 @@ def get_recipes():
     return render_template("recipes.html", recipes=recipes)
 
 
+# search field
 @app.route("/search", methods=["GET", "POST"])
 def search():
     query = request.form.get("query")
@@ -32,6 +33,7 @@ def search():
     return render_template("recipes.html", recipes=recipes)
 
 
+# registration function
 @app.route("/registration", methods=["GET", "POST"])
 def registration():
     if request.method == "POST":
@@ -56,6 +58,7 @@ def registration():
     return render_template("registration.html")
 
 
+# login function
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -99,6 +102,7 @@ def logout():
     session.pop("user")
     return redirect(url_for("login"))
 
+
 # adding a new recipe
 @app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
@@ -111,8 +115,6 @@ def add_recipe():
             "recipe_cuisine": request.form.get("recipe_cuisine"),
             "cooking_time": request.form.get("cooking_time"),
             "serving_nr": request.form.get("serving_nr"),
-            "measure": request.form.get("measure"),
-            "ing_amount": request.form.get("ing_amount"),
             "recipe_ing": request.form.get("recipe_ing"),
             "recipe_description": request.form.get("recipe_description"),
             "recipe_directions": request.form.get("recipe_directions"),
@@ -126,7 +128,7 @@ def add_recipe():
     time = mongo.db.time.find().sort("cooking_number", 1)
     servings = mongo.db.servings.find().sort("serving_nr", 1)
     measures = mongo.db.measures.find().sort("measure_number", 1)
-    return render_template("add_recipe.html", categories=categories, time=time, servings=servings, measures=measures)
+    return render_template("add_recipe.html", categories=categories, time=time, servings=servings,)
 
 # see a single recipe function 
 @app.route("/single_recipe/<recipe_id>")
@@ -147,8 +149,6 @@ def edit_recipe(recipe_id):
             "recipe_cuisine": request.form.get("recipe_cuisine"),
             "cooking_time": request.form.get("cooking_time"),
             "serving_nr": request.form.get("serving_nr"),
-            "measure": request.form.get("measure"),
-            "ing_amount": request.form.get("ing_amount"),
             "recipe_ing": request.form.get("recipe_ing"),
             "recipe_description": request.form.get("recipe_description"),
             "recipe_directions": request.form.get("recipe_directions"),
@@ -161,8 +161,7 @@ def edit_recipe(recipe_id):
     categories = mongo.db.categories.find().sort("category_number", 1)
     time = mongo.db.time.find().sort("cooking_number", 1)
     servings = mongo.db.servings.find().sort("serving_nr", 1)
-    measures = mongo.db.measures.find().sort("measure_number", 1)
-    return render_template("edit_recipe.html", recipe=recipe, categories=categories, time=time, servings=servings, measures=measures)
+    return render_template("edit_recipe.html", recipe=recipe, categories=categories, time=time, servings=servings)
 
 
 # delete recipe function

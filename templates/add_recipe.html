@@ -60,36 +60,14 @@
 			</div>
 		</div>
 
-        <!-- input ingredient, amount and measure row -->
-        <div class="container">
-            <div class="form-inline" role="form">
-                <div class="form-group" id="parent_div">
-                    <div class="row form-group child_div">
-                        <label for="ingredients" class="control-label"></label>
-                        <!-- list of ingredients -->
-                        <div class="input-field form-group col s12 m7">
-                            <input id="recipe_ing" name="recipe_ing" type="text" class="validate" required>
-                            <label for="recipe_ing">Ingredient</label>
-                        </div>
-                        <!-- ingrediants amount -->
-                        <div class="input-field form-group col s6 m2">
-                            <input id="ing_amount" name="ing_amount" type="text" class="validate" required>
-                            <label for="ing_amount">Amount</label>
-                        </div>
-                        <!-- measure for the ingrediant amount -->
-                        <div class="input-field form-group col s6 m3">
-                            <select id="measure" name="measure" class="browser-default" required>
-                                <option value="" disabled selected>Measure</option>
-                                {% for measure in measures %}
-                                    <option value="{{ measure.measure }}">{{ measure.measure }}</option>
-                                {% endfor %}
-                                <label for="measure">Amount</label>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- input ingredients -->
+        <div class="row">
+			<div class="input-field col s12">
+				<textarea id="recipe_ing" name="recipe_ing"
+                    class="materialize-textarea validate"></textarea>
+				<label for="recipe_ing">Ingredients</label>
+			</div>
+		</div>
 
 
 		<!-- recipe directions -->
