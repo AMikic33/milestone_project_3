@@ -1,6 +1,24 @@
 body {
-    background-color: #f5f5f5;
+    background-color: #fffdfa;
 }
+
+h2, h3, h4 {
+    font-family: 'Sansita Swashed', cursive;
+    margin: 2rem;
+}
+
+/* login and registration */
+
+.reg-login-info, .card-panel {
+    font-family: 'Roboto', sans-serif;
+}
+
+p {
+    font-size: small;
+}
+
+
+/* navbar */
 
 .text-shadow {
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.7);
@@ -11,15 +29,7 @@ nav .brand-logo {
     font-family: 'Sansita Swashed', cursive;
 }
 
-.main-title {
-    font-family: 'Sansita Swashed', cursive;
-    margin: 2rem;
-}
-
-p {
-    font-size: small;
-}
-
+/* cards on the homepage */
 
 h3 {
     margin-top: 0.2rem;
@@ -27,10 +37,6 @@ h3 {
 
 .card {
     margin: 2rem;
-}
-
-.card-title {
-    font-family: 'Sansita Swashed', cursive;
 }
 
 .card-action {
@@ -46,15 +52,13 @@ h3 {
     background-position: center center;
 }
 
+/* single recipe page */
+
 .center-align .category {
     font-size: 2rem;
 }
 
-.ingredients {
-    padding: 2rem;
-}
-
-.preparation {
+.ingredients .preparation {
     padding: 2rem;
 }
 
