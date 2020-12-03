@@ -1,54 +1,63 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h3 class="center-align">Edit recipe</h3>
+<h3 class="center-align grey-text text-darken-2">Edit recipe</h3>
 
 <div class="row">
 	<form class="col s12" method="POST" action="{{ url_for('edit_recipe', recipe_id=recipe._id) }}">
 
 		<div class="row">
 			<!-- recipe name-->
-			<div class="input-field col s12 m8">
-				<input id="recipe_name" name="recipe_name" type="text" class="validate" required>
+			<div class="input-field col s12 m8 grey-text text-darken-2">
+				<input id="recipe_name" name="recipe_name" type="text" class="validate" value="{{ recipe.recipe_name }}" required>
 				<label for="recipe_name">Recipe Name</label>
 			</div>
 			<!-- recipe cuisine-->
-			<div class="input-field col s12 m4">
-				<input id="recipe_cuisine" name="recipe_cuisine" type="text" class="validate" required>
+			<div class="input-field col s12 m4 grey-text text-darken-2">
+				<input id="recipe_cuisine" name="recipe_cuisine" type="text" class="validate" value="{{ recipe.recipe_cuisine }}" required>
 				<label for="recipe_cuisine">Cuisine</label>
 			</div>
 		</div>
 
 		<div class="row">
 			<!-- recipe category -->
-			<div class="input-field col s12 m4">
+			<div class="input-field col s12 m4 grey-text text-darken-2">
 				<select id="category_name" name="category_name" class="browser-default" required>
                         <option value="" disabled selected>Select Category</option>
                         {% for category in categories %}
                             {% if category.category_name == recipe.category_name %}
-                            <option value="{{ category.category_name }}" selected>{{ category.category_name }}</option>
+                                <option value="{{ category.category_name }}" selected>{{ category.category_name }}</option>
                             {% else %}
-                            <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+                                <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+                            {% endif %}
                         {% endfor %}
                     </select>
 				<label for="category_name"></label>
 			</div>
 			<!-- cooking time-->
-			<div class="input-field col s12 m4">
+			<div class="input-field col s12 m4 grey-text text-darken-2">
 				<select id="cooking_time" name="cooking_time" class="browser-default" required>
                         <option value="" disabled selected>Cooking Time</option>
                         {% for time in time %}
-                            <option value="{{ time.cooking_time }}">{{ time.cooking_time }}</option>
+                            {% if time.cooking_time == recipe.cooking_time %}
+                                <option value="{{ time.cooking_time }}" selected>{{ time.cooking_time }}</option>
+                            {% else %}
+                                <option value="{{ time.cooking_time }}">{{ time.cooking_time }}</option>
+                            {% endif %}
                         {% endfor %}
                         <label for="cooking_time"></label>
                     </select>
 			</div>
 			<!-- number of servings -->
-			<div class="input-field col s12 m4">
+			<div class="input-field col s12 m4 grey-text text-darken-2">
 				<select id="serving_nr" name="serving_nr" class="browser-default" required>
                         <option value="" disabled selected>Servings</option>
                         {% for serving in servings %}
-                            <option value="{{ serving.serving_nr }}">{{ serving.serving_nr }}</option>
+                            {% if serving.serving_nr == recipe.serving_nr %}
+                                <option value="{{ serving.serving_nr }}" selected>{{ serving.serving_nr }}</option>
+                            {% else %}
+                                <option value="{{ serving.serving_nr }}">{{ serving.serving_nr }}</option>
+                            {% endif %}
                         {% endfor %}
                         <label for="serving_nr"></label>
                     </select>
@@ -56,22 +65,24 @@
 		</div>
 		<!-- recipe description -->
 		<div class="row">
-			<div class="input-field col s12">
+			<div class="input-field col s12 grey-text text-darken-2">
 				<textarea id="recipe_description" name="recipe_description"
-                    class="materialize-textarea validate"></textarea>
+                    class="materialize-textarea validate">
+                    {{- recipe.recipe_description -}}
+                </textarea>
 				<label for="recipe_description">Recipe Description</label>
 			</div>
 		</div>
 		<!-- list of ingrediants -->
 		<div id="ingredients_div">
-			<div class="row ing_list">
+			<div class="row ing_list grey-text text-darken-2">
 				<div class="input-field form-group col s12 m7">
-					<input id="recipe_ing" name="recipe_ing" type="text" class="validate" required>
+					<input id="recipe_ing" name="recipe_ing" type="text" class="validate" value="{{ recipe.recipe_ing }}" required>
 					<label for="recipe_ing">Ingrediant</label>
 				</div>
 				<!-- ingrediants amount -->
 				<div class="input-field form-group col s6 m2">
-					<input id="ing_amount" name="ing_amount" type="text" class="validate" required>
+					<input id="ing_amount" name="ing_amount" type="text" class="validate" value="{{ recipe.ing_amount }}" required>
 					<label for="ing_amount">Amount</label>
 				</div>
 				<!-- measure for the ingrediant amount -->
@@ -79,7 +90,11 @@
 					<select id="measure" name="measure" class="browser-default" required>
                             <option value="" disabled selected>Measure</option>
                             {% for measure in measures %}
-                                <option value="{{ measure.measure }}">{{ measure.measure }}</option>
+                                {% if measure.measure == recipe.measure %}
+                                    <option value="{{ measure.measure }}" selected>{{ measure.measure }}</option>
+                                {% else %}
+                                    <option value="{{ measure.measure }}">{{ measure.measure }}</option>
+                                {% endif %}
                             {% endfor %}
                             <label for="measure">Amount</label>
                         </select>
@@ -91,9 +106,11 @@
 		</div>
 		<!-- recipe directions -->
 		<div class="row">
-			<div class="input-field col s12">
+			<div class="input-field col s12 grey-text text-darken-2">
 				<textarea id="directions" name="directions"
-                    class="materialize-textarea validate"></textarea>
+                    class="materialize-textarea validate">
+                    {{- recipe.directions -}}    
+                </textarea>
 				<label for="directions">Preparation</label>
 			</div>
             <button class="btn waves-effect waves-light deep-orange lighten-4" type="button" id="add-preparation-btn">Add Preparation Step
@@ -102,16 +119,24 @@
 		</div>
 		<!-- upload image -->
 		<div class="row">
-			<div class="input-field col s12">
+			<div class="input-field col s12 grey-text text-darken-2">
 				<textarea id="recipe_img" name="recipe_img"
-                    class="materialize-textarea validate"></textarea>
+                    class="materialize-textarea validate">
+                    {{- recipe.recipe_img -}}
+                </textarea>
 				<label for="recipe_img">Image URL</label>
 			</div>
 		</div>
-		<!-- submit recipe button -->
+        
+        <!-- edit and cancel buttons -->
 		<div class="row">
 			<div class="cols12 center-align">
-				<button class="btn-large waves-effect waves-light deep-orange lighten-4" type="submit" name="action">Edit Recipe
+
+            <!-- cancel editing -->
+                <a href="{{ url_for('get_recipes') }}" class="waves-effect waves-light deep-orange btn">Cancel</a>
+
+                <!-- edit recipe button-->
+				<button class="btn waves-effect waves-light" type="submit" name="action">Edit Recipe
                         <i class="material-icons right"></i>
                     </button>
 			</div>

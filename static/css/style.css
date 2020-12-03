@@ -62,6 +62,6 @@ h3 {
     padding: 2rem;
 }
 
-.btn-small {
+.btn, .btn-small {
     margin: 1rem;
 }
