@@ -2,13 +2,15 @@
 $(document).ready(function () {
     var elems = document.querySelectorAll('.sidenav');
     var instances = M.Sidenav.init(elems);
-
-    // var elems = document.querySelectorAll('select');
-    // var instances = M.FormSelect.init(elems, options);
-
-    $('#add-ingredient-btn').click(function(e){
-        e.preventDefault();
-        // Add ingredient logic
-        console.info("Inside the button click event");
-    });
 });
+
+// add another ingrediant function
+$('#create_button').click(function() {
+  var html = $('.child_div:first').parent().html();
+  $(html).insertBefore(this);
+});
+
+$(document).on("click", ".deleteButton", function() {
+  $(this).closest('.child_div').remove();
+});
+

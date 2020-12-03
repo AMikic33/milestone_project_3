@@ -17,65 +17,6 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
-"""
-Strategy with the add to favourites button:
-In both, you'll need an endpoint (function).
-
-1. When the user clicks, the endpoint will add it to the user favourites list and render to some other/same page
-2. Instead of refreshing, add an event listener to the button, when clicked, POST request, the endpoint returns JSON data, e.g. {'status': 'added'}
-
-Recipes collection
-{
-    _id
-    category_name
-    recipe_name
-    author: ObjectId(User)
-    is_active: True/False
-    ----- favourited_by: [ObjectId(User), ..., ObjectId(User)] --> Easier to delete but harder to query
-}
-
-User collection
-{
-    _id
-    username
-    password
-    ----- favourites: [ObjectIds(Recipes), ..., ObjectIds(Recipes)], --> Easier to query but harder to delete
-}
-
-Deleting Recipes:
-1. Add is_active: True/False to Recipes collection and when the author deletes it, simply set is_active to False
-2. Check if the Recipe exists before rendering, if not, remove it from the list
-3. When the author deletes it, get all users which have that ID in their favourites and delete it from there.
-
--------------------
-1. Add a recipe page
-2. Create endpoint to save the recipe to the database with the author
-3. Work on the Homepage to display all recipes
-4. Work on the profile to display only user recipes and ...
-5. ...add functionality to update/delete a recipe
-
-
-class FoodCategories:
-        main_course = "main_course"
-        soups = "soups"
-        desserts = "desserts"
-
-        @staticmethod
-        def all_categories():
-            return [FoodCategories.main_course, FoodCategories.soups, FoodCategories.desserts]
-
-        @staticmethod
-        def category_title(category_name):
-            return category_name.replace('_', ' ').title()
-
-@app.route("/")
-@app.route("/get_recipes/<category>"). --> get_recipes/desserts
-def get_recipes(category):
-    recipes = list(mongo.db.recipes.find({'category_name': category}))
-    return render_template("recipes.html", recipes=recipes, title=FoodCategories.category_title(category))
-
-"""
-
 
 @app.route("/")
 @app.route("/get_recipes")
@@ -175,7 +116,6 @@ def add_recipe():
     time = mongo.db.time.find().sort("cooking_number", 1)
     servings = mongo.db.servings.find().sort("serving_nr", 1)
     measures = mongo.db.measures.find().sort("measure_number", 1)
-    print(len(measures))
     return render_template("add_recipe.html", categories=categories, time=time, servings=servings, measures=measures)
 
 # see a single recipe function 

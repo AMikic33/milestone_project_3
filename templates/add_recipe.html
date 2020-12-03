@@ -59,33 +59,38 @@
 				<label for="recipe_description">Recipe Description</label>
 			</div>
 		</div>
-		<!-- list of ingrediants -->
-		<div id="ingredients_div">
-			<div class="row ing_list">
-				<div class="input-field form-group col s12 m7">
-					<input id="recipe_ing" name="recipe_ing" type="text" class="validate" required>
-					<label for="recipe_ing">Ingrediant</label>
-				</div>
-				<!-- ingrediants amount -->
-				<div class="input-field form-group col s6 m2">
-					<input id="ing_amount" name="ing_amount" type="text" class="validate" required>
-					<label for="ing_amount">Amount</label>
-				</div>
-				<!-- measure for the ingrediant amount -->
-				<div class="input-field form-group col s6 m3">
-					<select id="measure" name="measure" class="browser-default" required>
-                            <option value="" disabled selected>Measure</option>
-                            {% for measure in measures %}
-                                <option value="{{ measure.measure }}">{{ measure.measure }}</option>
-                            {% endfor %}
-                            <label for="measure">Amount</label>
-                        </select>
-				</div>
-			</div>
-            <button class="btn waves-effect waves-light deep-orange lighten-4" type="button" id="add-ingredient-btn">Add Ingredient
-                <i class="material-icons right"></i>
-            </button>
-		</div>
+
+        <div class="container">
+            <div class="form-inline" role="form">
+                <div class="form-group" id="parent_div">
+                    <div class="row form-group child_div">
+                        <label for="ingredients" class="control-label"></label>
+                        <!-- list of ingrediants -->
+                        <div class="input-field form-group col s12 m7">
+                            <input id="recipe_ing" name="recipe_ing" type="text" class="validate" required>
+                            <label for="recipe_ing">Ingrediant</label>
+                        </div>
+                        <!-- ingrediants amount -->
+                        <div class="input-field form-group col s6 m2">
+                            <input id="ing_amount" name="ing_amount" type="text" class="validate" required>
+                            <label for="ing_amount">Amount</label>
+                        </div>
+                        <!-- measure for the ingrediant amount -->
+                        <div class="input-field form-group col s6 m3">
+                            <select id="measure" name="measure" class="browser-default" required>
+                                <option value="" disabled selected>Measure</option>
+                                {% for measure in measures %}
+                                    <option value="{{ measure.measure }}">{{ measure.measure }}</option>
+                                {% endfor %}
+                                <label for="measure">Amount</label>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
 		<!-- recipe directions -->
 		<div class="row">
 			<div class="input-field col s12">
