@@ -80,6 +80,7 @@ def user_profile(username):
         {"username": session["user"]})["username"]
 
     if session["user"]:
+        
         return render_template("user_profile.html", username=username)
     #if not his profile, directing back to login page
     return redirect(url_for("login"))
@@ -107,6 +108,7 @@ def add_recipe():
             "ing_amount": request.form.get("ing_amount"),
             "recipe_ing": request.form.get("recipe_ing"),
             "recipe_description": request.form.get("recipe_description"),
+            "recipe_directions": request.form.get("directions"),
             "author": session["user"]
         }
         mongo.db.recipes.insert_one(recipe)
@@ -129,7 +131,11 @@ def single_recipe(recipe_id):
 @app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
 def edit_recipe(recipe_id):
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    return render_template("edit_recipe.html", recipe=recipe)
+    categories = mongo.db.categories.find().sort("category_number", 1)
+    time = mongo.db.time.find().sort("cooking_number", 1)
+    servings = mongo.db.servings.find().sort("serving_nr", 1)
+    measures = mongo.db.measures.find().sort("measure_number", 1)
+    return render_template("edit_recipe.html", recipe=recipe, categories=categories, time=time, servings=servings, measures=measures)
 
 
 # delete recipe function
