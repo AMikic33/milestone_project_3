@@ -7,13 +7,18 @@
             <h4 class="welcome-user center-align grey-text text-darken-2">
                     Welcome, {{ username }}
             </h4>
-            <p>some text </p>
+            <p class="center-align col s12">
+                Here you will find your own recipe collection. You can edit and / or 
+                delete your own recipes by clicking on the link to the recipe and 
+                "edit recipe"/"delete recipe" button on the bottom of the page.
+                If you're looking for an inspiration, check out our shared collection 
+                <a href="{{ url_for('get_recipes') }}" class="deep-orange-text text-lighten-4">here</a>.
+            </p>
         </div>
     </div>
 
     <div id="recipes">
         <div class="row recipes-overview">
-        {% if session.user|lower == recipe.author|lower %}
             {% for recipe in recipes %}
                 <div class="col s12 m4">
                     <div class="card grey-text text-darken-2">
@@ -32,7 +37,6 @@
                     </div>
                 </div>
             {% endfor %}
-        {% endif %}
     </div>
    
 

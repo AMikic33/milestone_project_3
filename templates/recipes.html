@@ -1,29 +1,36 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <div class="row main-intro center-align cols12">
-        <h2 class="main-title grey-text text-darken-2 col s12">
+    <div class="row main-title center-align cols12">
+        <h2 class="grey-text text-darken-2 col s12">
             Whole Food Plant Based Recipes
         </h2>
+    </div>
+    <div class ="main-intro center-align col s12">
         <p class="grey-text text-darken-2">
             The idea behind the whole-food, plant-based diet (WFPB for short) is surprisingly simple: Eat whole, unrefined, plant-based foods. 
             The goal is to eat a large variety of minimally processed foods. And the best part? There aren’t a bunch of rules or restrictions. 
             There’s no calorie counting, you don’t have to worry about eating raw versus cooked and the list of things you can enjoy is robust.
         </p>
+        <p class="grey-text text-darken-2">
+            In this online recipe book, you can create your own collection by adding a new recipe, share your recipes and you can also search
+            for an inspiration in the shared collection below. If you know what you're looking for, just insert the recipe name, category or the type of
+            cuisine in the search field.
+        </p>
+        <p class="grey-text text-darken-2">Happy cooking!</p>
     </div>
 
     <!-- search field -->
-    <div class="row card-panel">
+    <div class="search-card row card-panel col s12">
         <form action="{{ url_for('search') }}" method="post" class="col s12">
             <div class="row valign-wrapper center-align">
-                <div class="input-field ol s12">
-                    <i class="material-icons search"></i>
+                <div class="input-field col s12 white-text">
                     <input type="text" name="query" id="query" class="validate">
                     <label for="query">Search</label>
                 </div>
                 <div class="col s12 m4">
-                    <a href="{{ url_for('get_recipes') }}" class="btn">Reset</a>
-                    <button type="submit" class="btn">Search
+                    <a href="{{ url_for('get_recipes') }}" class="btn waves-effect waves-light deep-orange darken-3">Reset</a>
+                    <button type="submit" class="btn waves-effect waves-light blue-grey">Search
                     </button>
                 </div>
             </div>
