@@ -210,6 +210,7 @@ This project was deployed to Heroku at the address https://milestone-project-3-a
 #### Content
 
 - text on the home page: https://www.purewow.com/food/wfpb-recipes
+- relying on the lessons for creation of register, login and logout function
 
 
 #### Acknowledgements
