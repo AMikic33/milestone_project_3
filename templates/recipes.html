@@ -1,10 +1,74 @@
 {% extends "base.html" %}
 {% block content %}
 
-    {% for recipe in recipes %}
-        {{ recipe.recipe_name }}<br>
-        {{ recipe.category_name }}<br>
-        {{ recipe.favourite }}<br>
-    {% endfor %}
+    <!-- main title -->
+    <div class="row main-title center-align cols12">
+        <h2 class="grey-text text-darken-2 col s12">
+            Whole Food Plant Based Recipes
+        </h2>
+    </div>
+
+    <!-- intro text -->
+    <div class ="main-intro center-align col s12">
+        <p class="grey-text text-darken-2">
+            The idea behind the whole-food, plant-based diet (WFPB for short) is surprisingly simple: Eat whole, unrefined, plant-based foods. 
+            The goal is to eat a large variety of minimally processed foods. And the best part? There aren’t a bunch of rules or restrictions. 
+            There’s no calorie counting, you don’t have to worry about eating raw versus cooked and the list of things you can enjoy is robust.
+        </p>
+        <p class="grey-text text-darken-2">
+            In this online recipe book, you can create your own collection by adding a new recipe, share your recipes and you can also search
+            for an inspiration in the shared collection below. If you know what you're looking for, just insert the recipe name, category or the type of
+            cuisine in the search field.
+        </p>
+        <p class="grey-text text-darken-2">Happy cooking!</p>
+    </div>
+
+    <!-- search field -->
+    <div class="search-card row card-panel col s12">
+        <form action="{{ url_for('search') }}" method="post" class="col s12">
+            <div class="row valign-wrapper center-align">
+                <div class="input-field col s12 white-text">
+                    <input type="text" name="query" id="query" class="validate">
+                    <label for="query">Search</label>
+                </div>
+                <div class="col s12 m4">
+                    <a href="{{ url_for('get_recipes') }}" class="btn grey darken-2 waves-effect waves-light">Reset</a>
+                    <button type="submit" class="btn grey darken-2 waves-effect waves-light">Search
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- recipe display -->
+    {% if recipes|length > 0 %}
+        <div id="recipes">
+            <div class="row recipes-overview">
+                {% for recipe in recipes %}
+                    <div class="col s12 m6 l6 xl4">
+                        <div class="card grey-text text-darken-2">
+                            <div class="card-image">
+                                <img class="recipe_img" src="{{ recipe.recipe_img }}" alt="recipe photo">
+                            </div>
+                            <div class="card-content">
+                                <h3 class="card-title center-align">{{ recipe.recipe_name }}</h3>
+                                <p class="center-align category"><strong>Category:</strong> {{ recipe.category_name }}</p>
+                                <p class="center-align category"><strong>Cuisine:</strong> {{ recipe.recipe_cuisine }}</p>
+                                <p class="center-align category"><strong>Author:</strong> {{ recipe.author }}</p>
+                            </div>
+                            <div class="card-action center-align deep-orange lighten-4">
+                                <a href="{{ url_for('single_recipe', recipe_id=recipe._id) }}" class="white-text"> Go to recipe</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    
+    {% else %}
+        <h3 class="deep-orange-text text-darken-4 center-align"> No results for this search</h3>
+    {% endif %}
 
 {% endblock %}
+

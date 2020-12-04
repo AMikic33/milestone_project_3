@@ -1,3 +1,77 @@
+
+/* all titles */
+h2, h3, h4 {
+    font-family: 'Sansita Swashed', cursive;
+    margin: 2rem;
+    padding: 3rem;
+}
+
+/* login and registration */
+
+.reg-login-info, .card-panel {
+    font-family: 'Roboto', sans-serif;
+}
+
+p {
+    font-size: small;
+}
+
+
+/* navbar */
+
 .text-shadow {
-    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.7);
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
+}
+
+nav .brand-logo {
+    padding-left: 0.5rem;
+    font-family: 'Sansita Swashed', cursive;
+}
+
+/* homepage */
+
+.search-card {
+    background: transparent;
+    padding: 0;
+    margin: 2rem;
+}
+
+.main-intro {
+    margin-bottom: 3rem;
+}
+
+h3 {
+    margin-top: 0.2rem;
+}
+
+.card {
+    margin: 2rem;
+}
+
+.card-action {
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
+}
+.card .card-content {
+    padding: 0.6rem;
+}
+
+.card .card-image img {
+    height: 260px;
+    object-fit: cover;
+    background-position: center center;
+}
+
+/* single recipe page */
+
+.center-align .category {
+    font-size: 2rem;
+}
+
+.ingredients, .preparation, .description {
+    font-family: 'Sansita Swashed', cursive;
+    padding: 2rem;
+}
+
+.btn, .btn-small {
+    margin: 1rem;
 }

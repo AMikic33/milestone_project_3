@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <!-- display user name-->
+    <div class="row">
+        <div class="col s12 m6 offset-m3" method="POST" action="{{ url_for('login') }}">
+            <h4 class="welcome-user center-align grey-text text-darken-2">
+                    Welcome, {{ username }}
+            </h4>
+            <p class="center-align col s12">
+                Here you will find your own recipe collection. You can edit and / or 
+                delete your own recipes by clicking on the link to the recipe and 
+                "edit recipe"/"delete recipe" button on the bottom of the page.
+                If you're looking for an inspiration, check out our shared collection 
+                <a href="{{ url_for('get_recipes') }}" class="deep-orange-text text-lighten-4">here</a>.
+            </p>
+        </div>
+    </div>
+    <!-- display only user's recipes -->
+    <div id="recipes">
+        <div class="row recipes-overview">
+            {% for recipe in recipes %}
+                <div class="col s12 m4">
+                    <div class="card grey-text text-darken-2">
+                        <div class="card-image">
+                            <img class="recipe_img" src="{{ recipe.recipe_img }}" alt="recipe photo">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title center-align">{{ recipe.recipe_name }}</h3>
+                            <p class="center-align category"><strong>Category:</strong> {{ recipe.category_name }}</p>
+                            <p class="center-align category"><strong>Cuisine:</strong> {{ recipe.recipe_cuisine }}</p>
+                            <p class="center-align category"><strong>Author:</strong> {{ recipe.author }}</p>
+                        </div>
+                        <div class="card-action center-align deep-orange lighten-4">
+                            <a href="{{ url_for('single_recipe', recipe_id=recipe._id) }}" class="white-text"> Go to recipe</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+    </div>
+   
+
+{% endblock %}

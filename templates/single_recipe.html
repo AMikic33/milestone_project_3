@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <div class="row recipe-header grey-text text-darken-2 center-align col s12">
+        <h2 class="center-align">{{ recipe.recipe_name }}</h2>
+        <h5 class="sub-title center-align">Created by: {{ recipe.author }}</h5>
+    </div>
+
+    <div class="row recipe-info grey-text text-darken-2 center-align col s12">
+        <p><strong>Cuisine:</strong> {{ recipe.recipe_cuisine }}</p>
+        <p><strong>Category:</strong> {{ recipe.category_name }}</p>
+        <p><strong>Cooking time:</strong> {{ recipe.cooking_time }}</p>
+        <p><strong>Servings:</strong> {{ recipe.serving_nr }}</p>
+    </div>
+
+    <div class="row recipe-img center-align col s12">
+        <img src="{{ recipe.recipe_img }}" style="max-height: 45vh">
+    </div>
+
+    <div class="container description grey-text text-darken-2 col s12">
+        <h5 class="center-align">Recipe Description</h5>
+        <p class="center-align ">{{ recipe.recipe_description }}</p>
+    </div>
+
+    <div class="container ingredients grey-text text-darken-2 col s12">
+        <h5 class="center-align">Ingredients</h5>
+        <p class="center-align ">{{ recipe.recipe_ing }}</p>
+    </div>
+
+    <div class="container preparation grey-text text-darken-2 col s12">
+        <h5 class="center-align">Preparation</h5>
+        <p class="center-align ">{{ recipe.recipe_directions }}</p>
+    </div>
+    <!-- buttons for edit/ delete recipe -->
+    <div class="row center-align">
+        <!-- loop for showing buttons only on user's recipes
+         -->
+        {% if session.user|lower == recipe.author|lower %}
+            <a href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}" class="waves-effect waves-light grey darken-2 btn-small">Edit Recipe</a>
+            <a href="{{ url_for('delete_recipe', recipe_id=recipe._id) }}" class="waves-effect waves-light grey darken-2 btn-small">Delete Recipe</a>
+        {% endif %}
+    </div>
+    
+
+
+{% endblock %}

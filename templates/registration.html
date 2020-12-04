@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h4 class="center-align grey-text text-darken-2">Registration<h4>
+
+    <div class="row">
+        <form class="col s12 m6 offset-m3" method="POST" action="{{ url_for('registration') }}">
+            <div class="card-panel grey lighten-1">
+                <!-- sign in name -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="username" name="username" type="text" minlength="3" 
+                            maxlength="20" class="validate" required>
+                        <label for="username">Username</label>
+                    </div>
+                </div>
+                <!-- password -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="password" name="password" type="password" minlength="3" 
+                            maxlength="20" class="validate" required>
+                        <label for="password">Password</label>
+                    </div>
+                </div>
+                <!-- submit -->
+                <div class="row">
+                    <button class="btn waves-effect waves-light deep-orange lighten-4 text-shadow" type="submit" name="action">Submit
+                        <i class="material-icons right"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- link to login page -->    
+    <div class="row">
+        <div class="col12">
+            <p class="reg-login-info center-align">
+                Already have an account? <a href="{{ url_for('login') }}" class="deep-orange-text text-lighten-4">Log In here</a>
+            </p>
+        </div>
+    </div>
+
+    {% endblock %}

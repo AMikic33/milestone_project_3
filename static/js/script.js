@@ -1,4 +1,6 @@
-document.addEventListener('DOMContentLoaded', function() {
+// navbar initialization
+$(document).ready(function () {
     var elems = document.querySelectorAll('.sidenav');
-    var instances = M.Sidenav.init(elems, options);
-  });
+    var instances = M.Sidenav.init(elems);
+});
+
