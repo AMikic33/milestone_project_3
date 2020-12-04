@@ -38,6 +38,7 @@ As there are many pages to this project, I have included the wireframes in a sep
 
 Please see the wireframes.md file for the entire collection of wireframes:
 
+https://github.com/AMikic33/milestone_project_3/tree/master/static/wireframes
 
 
 
