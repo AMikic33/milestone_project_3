@@ -31,8 +31,10 @@
         <h5 class="center-align">Preparation</h5>
         <p class="center-align ">{{ recipe.recipe_directions }}</p>
     </div>
-
+    <!-- buttons for edit/ delete recipe -->
     <div class="row center-align">
+        <!-- loop for showing buttons only on user's recipes
+         -->
         {% if session.user|lower == recipe.author|lower %}
             <a href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}" class="waves-effect waves-light grey darken-2 btn-small">Edit Recipe</a>
             <a href="{{ url_for('delete_recipe', recipe_id=recipe._id) }}" class="waves-effect waves-light grey darken-2 btn-small">Delete Recipe</a>

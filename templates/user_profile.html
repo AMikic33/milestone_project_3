@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-
+    <!-- display user name-->
     <div class="row">
         <div class="col s12 m6 offset-m3" method="POST" action="{{ url_for('login') }}">
             <h4 class="welcome-user center-align grey-text text-darken-2">
@@ -16,7 +16,7 @@
             </p>
         </div>
     </div>
-
+    <!-- display only user's recipes -->
     <div id="recipes">
         <div class="row recipes-overview">
             {% for recipe in recipes %}

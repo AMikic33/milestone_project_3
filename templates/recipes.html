@@ -1,11 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
 
+    <!-- main title -->
     <div class="row main-title center-align cols12">
         <h2 class="grey-text text-darken-2 col s12">
             Whole Food Plant Based Recipes
         </h2>
     </div>
+
+    <!-- intro text -->
     <div class ="main-intro center-align col s12">
         <p class="grey-text text-darken-2">
             The idea behind the whole-food, plant-based diet (WFPB for short) is surprisingly simple: Eat whole, unrefined, plant-based foods. 
@@ -37,6 +40,7 @@
         </form>
     </div>
 
+    <!-- recipe display -->
     {% if recipes|length > 0 %}
         <div id="recipes">
             <div class="row recipes-overview">
